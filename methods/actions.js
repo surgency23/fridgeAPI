@@ -64,7 +64,6 @@ const functions = {
                     if (isMatch && !err) {
 
                         const tokenObject = issueJWT(user);
-                        console.log(tokenObject)
                         res.status(200).json({success:true, token:tokenObject.token,expiresIn:tokenObject.expires})
                     } else {
                         res.status(403).send({
