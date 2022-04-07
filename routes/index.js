@@ -6,22 +6,9 @@ require('../config/passport')(passport)
 
 
 
-// const authorization = (req, res, next) => {
-//     const token = req.cookies.access_token;
-//     if (!token) {
-//         return res.sendStatus(403);
-//     }
-//     try {
-//         let token = jwt.sign(user.toJSON(), config.secret /*,{ expiresIn: 30}*/ );
-//         req.userId = data.id;
-//         req.userRole = data.role;
-//         return next();
-//     } catch {
-//         return res.sendStatus(403);
-//     }
-// };
-//@description Adding new user
-//@route POST /adduser
+router.post("/", function(req,res){
+    res.json({success:true, msg: "hello world!"})
+});
 router.post("/signup", actions.signup);
 
 //@description authenticate user and return token
