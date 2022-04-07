@@ -13,8 +13,7 @@ const passportJWTOptions = {
     ignoreExpiration: false,
     passReqToCallback: false,
     jsonWebTokenOptions: {
-        maxAge: '10s', // 2 days
-        //clockTimestamp: new Date().getTime(),
+        maxAge: config.maxAge, // 2 days
     }
 }
 module.exports = (passport) => {
