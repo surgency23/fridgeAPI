@@ -6,7 +6,7 @@ require('../config/passport')(passport)
 
 
 
-router.post("/", function(req,res){
+router.get("/", function(req,res){
     res.json({success:true, msg: "hello world!"})
 });
 router.post("/signup", actions.signup);
