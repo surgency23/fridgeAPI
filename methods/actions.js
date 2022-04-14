@@ -75,11 +75,17 @@ const functions = {
             }
         })
     },
-    getinfo: async function (req, res) {
-        return res.json({
-            success: true,
-            msg: "happy path"
-        });
+    getinfo: function (req, res) {
+        if(req.headers.authorization && req.headers.authorization.split(' ')[0] === "Bearer"){
+            let token = req.headers.authorization.split(' ')[1];
+            let decoded = jwt.decode(token,config.secret);
+            return res.json({success:true,msg:decoded.name})
+        }else{
+            returnres.json({
+                success: false,
+                msg: "No Headers"
+            });
+        }
 
     }
     

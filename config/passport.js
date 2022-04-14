@@ -4,39 +4,37 @@ const User = require('../models/user');
 const config = require('./dbconfig')
 
 
-const passportJWTOptions = {
-    jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: config.secret,
-    // issuer: 'enter issuer here',
-    // audience: 'enter audience here',
-    //algorithms: ['RS256'],
-    ignoreExpiration: false,
-    passReqToCallback: false,
-    jsonWebTokenOptions: {
-        maxAge: config.maxAge, // 2 days
-    }
-}
+// const passportJWTOptions = {
+//     jwtFromRequest: extractJwt.fromAuthHeaderAsBearerToken(),
+//     secretOrKey: config.secret,
+//     // issuer: 'enter issuer here',
+//     // audience: 'enter audience here',
+//     //algorithms: ['RS256'],
+//     ignoreExpiration: false,
+//     passReqToCallback: false,
+//     jsonWebTokenOptions: {
+//         maxAge: config.maxAge, // 2 days
+//     }
+// }
 module.exports = (passport) => {
-    // The JWT payload is passed into the verify callback
-    passport.use(new jwtStrategy(passportJWTOptions, function(jwt_payload, done) {
-        // Since we are here, the JWT is valid!
-        
-        // We will assign the `sub` property on the JWT to the database ID of user
-        User.findOne({_id: jwt_payload.sub}, function(err, user) {
-            
-            // This flow look familiar?  It is the same as when we implemented
-            // the `passport-local` strategy
-            if (err) {
-                return done(err, false);
+    let opts = {};
+
+    opts.secretOrKey=config.secret;
+    opts.jwtFromRequest = extractJwt.fromAuthHeaderWithScheme('jwt');
+    passport.use(new jwtStrategy(opts,function(jwt_payload,done){
+        User.find({
+            id:jwt_payload.id
+        },function (err,user){
+            if(err){
+                return done(err,false);
             }
-            if (user) {
-                // Since we are here, the JWT is valid and our user is valid, so we are authorized!
-                return done(null, user);
-            } else {
-                return done(null, false);
+            if(user){
+                return done(null,user);
             }
-            
+            else {
+                return done(null,false);
+            }
         });
-        
+
     }));
 }

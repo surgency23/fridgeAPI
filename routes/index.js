@@ -17,6 +17,6 @@ router.post("/authenticate", actions.authenticate);
 
 //@description protected route, get user information after verifying token
 //@route GET /getinfo
-router.get("/getinfo",passport.authenticate('jwt', { failureRedirect: '/login', failureMessage: false ,session: false}), actions.getinfo)
-
+router.get("/getinfo",actions.getinfo)
+//1.26.11
 module.exports = router;

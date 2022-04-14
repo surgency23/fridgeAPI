@@ -20,6 +20,7 @@ app.use(cookieParser())
 app.use(bodyParser.json());
 app.use(routes);
 app.use(passport.initialize());
+require("./config/passport")(passport);
 
 
 
