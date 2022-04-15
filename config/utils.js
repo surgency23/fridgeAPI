@@ -7,7 +7,6 @@ module.exports= function issueJWT(user){
     const payload={
         id:_id,
         iat: Math.floor(Date.now / 1000),
-        name: user.email
     }
     const signedToken = jsonwebtoken.sign(payload,config.secret,{ expiresIn: expiresIn});
 

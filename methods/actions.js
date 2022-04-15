@@ -78,8 +78,8 @@ const functions = {
     getinfo: function (req, res) {
         if(req.headers.authorization && req.headers.authorization.split(' ')[0] === "Bearer"){
             let token = req.headers.authorization.split(' ')[1];
-            let decoded = jwt.decode(token,config.secret);
-            return res.json({success:true,msg:"Welcome " + decoded.name+"!"})
+            jwt.decode(token,config.secret);
+            return res.json({success:true,msg:"Welcome !"})
         }else{
             return res.json({
                 success: false,
