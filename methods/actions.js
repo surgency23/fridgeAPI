@@ -79,7 +79,7 @@ const functions = {
         if(req.headers.authorization && req.headers.authorization.split(' ')[0] === "Bearer"){
             let token = req.headers.authorization.split(' ')[1];
             jwt.decode(token,config.secret);
-            return res.json({success:true,msg:"Welcome !"})
+            return res.json({success:true,msg:"Welcome!"})
         }else{
             return res.json({
                 success: false,
