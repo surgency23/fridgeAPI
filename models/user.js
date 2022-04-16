@@ -15,6 +15,11 @@ const userSchema = new Schema({
         type:String,
         reqiure:true
     },
+    passwordUpdateTime:{
+        type:String,
+        required:true
+    },
+
 });
 
 userSchema.pre('save',function(next){
