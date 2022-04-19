@@ -3,7 +3,7 @@ const config = require('./dbconfig')
 
 module.exports= function issueJWT(user){
     const _id = user._id;
-    const expiresIn = '1h';
+    const expiresIn = '1d';
     const payload={
         id:_id,
         iat: Math.floor(Date.now / 1000),

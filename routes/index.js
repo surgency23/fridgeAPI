@@ -19,4 +19,5 @@ router.post("/authenticate", actions.authenticate);
 //@route GET /getinfo
 router.get("/getinfo",actions.getinfo)
 //1.26.11
+router.get("/loadRecipes",actions.loadRecipes);
 module.exports = router;
