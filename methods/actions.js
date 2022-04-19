@@ -86,7 +86,7 @@ const functions = {
         authenticateToken(req,res);
         return res.json({success:true,msg:"henlo!"})
     },
-    loadRecipes: async function (req, res) {
+    loadInRecipes: async function (req, res) {
         authenticateToken(req,res);
         for (let recipe of allRecipes) {
             let tagIds=[];
