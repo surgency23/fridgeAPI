@@ -5,7 +5,7 @@ const Recipe = require('../models/recipe');
 const jwt = require('jsonwebtoken');
 const config = require("../config/dbconfig");
 const issueJWT = require("../config/utils");
-
+let allRecipes = [];
 const functions = {
     signup: function (req, res) {
         if (!(req.body.email) || !(req.body.password) || !(req.body.fridgeName)) {
