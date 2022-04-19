@@ -127,6 +127,13 @@ const functions = {
             success: true,
             msg: "Saved all recipes"
         });
+    },
+    grabRecipes: async function(req,res){
+        let opts = req.body.lastId === undefined ? null : {_id: {$gt: req.body.lastId}}
+        return res.json({
+            success:true,
+            recipes: await Recipe.find(opts).limit(30)
+        });
     }
 }
 function authenticateToken(req,res) {
