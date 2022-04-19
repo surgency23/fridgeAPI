@@ -21,7 +21,7 @@ router.get("/getinfo",actions.getinfo);
 
 //@description grab next 30 recipes
 //@route GET /grabRecipes
-router.get("/grabRecipes",actions.grabRecipes);
+router.post("/grabRecipes",actions.grabRecipes);
 
 //router.get("/loadInRecipes",actions.loadInRecipes);
 module.exports = router;
