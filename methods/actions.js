@@ -130,10 +130,12 @@ const functions = {
     },
     grabRecipes: async function(req,res){
         let opts = req.body.lastId === undefined ? null : {_id: {$gt: req.body.lastId}}
-        return res.json({
-            success:true,
-            recipes: await Recipe.find(opts).limit(30)
-        });
+        let data = await Recipe.find(opts).limit(30)
+        res.status(200).send({
+            success: true,
+            msg: "Recipes found",
+            data:data
+        })
     }
 }
 function authenticateToken(req,res) {
